@@ -5,40 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wedding Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-overflow-x:hidden;
+background:linear-gradient(to bottom,#fdf8f3,#efe7df);
+color:#222;
+}
+
+/* GOLD COLOR */
+.gold{
+color:#b89b72;
+font-weight:600;
 }
 
 /* COVER */
 #cover{
 height:100vh;
-background:url("cover.jpg") center/cover;
+background:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.4)),
+url("cover.jpg") center/cover;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 color:white;
 text-align:center;
-}
-
-#cover::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
-top:0;
-left:0;
-}
-
-#cover h1,#cover p,#cover button{
-position:relative;
-z-index:2;
 }
 
 button{
@@ -48,18 +42,29 @@ border-radius:30px;
 background:#b89b72;
 color:white;
 margin-top:15px;
+cursor:pointer;
 }
 
-/* SECTION */
+/* SECTION CARDS */
 .section{
-padding:60px 20px;
+padding:50px 15px;
+display:flex;
+justify-content:center;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+max-width:500px;
+width:100%;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
 text-align:center;
-background:#f7f3ef;
 }
 
 /* COUNTDOWN */
 .countdown{
-font-size:24px;
+font-size:22px;
 color:#b89b72;
 margin:20px;
 }
@@ -69,20 +74,21 @@ margin:20px;
 display:flex;
 overflow-x:auto;
 gap:10px;
-padding:20px;
+padding-top:10px;
 }
 
 .gallery img{
-width:250px;
+width:240px;
 border-radius:15px;
 }
 
-/* MAP */
-iframe{
-width:100%;
-height:300px;
-border:none;
-margin-top:20px;
+/* INPUT */
+input, textarea{
+width:90%;
+padding:10px;
+margin:10px 0;
+border-radius:10px;
+border:1px solid #ddd;
 }
 
 /* MUSIC */
@@ -103,73 +109,84 @@ border:none;
 
 <!-- COVER -->
 <div id="cover">
-<h2>You have received a wedding invitation</h2>
-<h1>Sherihan El Gohary & Yassin Shousha</h1>
+<h3>You have received a wedding invitation</h3>
+<h1>Sherihan & Yassin</h1>
 <button onclick="openInvite()">Tap to Open</button>
 </div>
 
-<!-- MAIN -->
 <div id="main" style="display:none">
 
+<!-- DATE -->
 <div class="section">
-<h2>5 June 2026</h2>
+<div class="card">
+<h2 class="gold">5 June 2026</h2>
 <div id="countdown" class="countdown"></div>
 <p>Counting the days for our forever ❤️</p>
+</div>
 </div>
 
 <!-- STORY -->
 <div class="section">
-<h2>Our Story</h2>
+<div class="card">
+<h2 class="gold">Our Story</h2>
 
 <p><b>First Meeting — Summer 2022</b><br>
-It all began on a warm summer evening, where a simple moment turned into something unforgettable. What started as a casual meeting quickly became a connection that neither of us could ignore. From laughter to long conversations, something beautiful was quietly beginning.</p>
+A simple meeting turned into something unforgettable. From the very first conversation, we felt a connection that grew stronger with every moment we shared.</p>
 
 <br>
 
 <p><b>The Engagement — Winter 2023</b><br>
-Under the magic of winter skies, surrounded by love and happiness, we decided to take the next step. It was a moment filled with emotions, promises, and a future we couldn’t wait to build together.</p>
+Surrounded by love, we promised forever. A magical moment that marked the beginning of our new chapter together.</p>
+</div>
 </div>
 
-<!-- WHEN & WHERE -->
+<!-- LOCATION -->
 <div class="section">
-<h2>When & Where</h2>
-<p><b>Dream Land Fairy Garden</b></p>
+<div class="card">
+<h2 class="gold">When & Where</h2>
+
+<p>Dream Land Fairy Garden</p>
 <p>Hilton Pyramids Golf — 6 October</p>
 <p>5 June 2026</p>
 
 <button onclick="map()">View Location</button>
 
-<!-- GOOGLE MAP -->
 <iframe src="https://maps.google.com/maps?q=Hilton%20Pyramids%20Golf%20Dreamland&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
 
-<br><br>
-
+<br>
 <button onclick="addCalendar()">Add to Calendar</button>
+
+</div>
 </div>
 
 <!-- MOMENTS -->
 <div class="section">
-<h2>Moments</h2>
+<div class="card">
+<h2 class="gold">Moments</h2>
 
 <div class="gallery">
-<img src="cover.jpg">
-<img src="WhatsApp Image 2026-04-25 at 2.22.29 PM.jpeg">
+<img src="img1.jpg">
+<img src="img2.jpg">
+<img src="img3.jpg">
 </div>
 
-<p>Swipe right to see more →</p>
+<p>Swipe to see more →</p>
+</div>
 </div>
 
-<!-- GOOD TO KNOW -->
+<!-- RSVP -->
 <div class="section">
-<h2>Good to Know</h2>
+<div class="card">
+<h2 class="gold">RSVP</h2>
 
-<p><b>Are children welcome?</b><br>
-We love your little ones! Children are warmly welcome. Please note their attendance in your RSVP so we can arrange appropriate seating and kids menu.</p>
+<input id="name" placeholder="Name of guest (optional)">
+<input id="song" placeholder="Song request (optional)">
+<textarea id="note" placeholder="Leave a lovely note or wish ❤️"></textarea>
 
-<br>
+<button onclick="save()">Confirm RSVP</button>
 
-<p><b>Dress Code</b><br>
-Elegant / Formal attire is appreciated.</p>
+<p id="msg"></p>
+</div>
 </div>
 
 </div>
@@ -211,6 +228,19 @@ window.open("https://www.google.com/maps/search/?api=1&query=Hilton+Pyramids+Gol
 // CALENDAR
 function addCalendar(){
 window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T150000Z/20260605T180000Z");
+}
+
+// SAVE RSVP
+function save(){
+let name=document.getElementById("name").value;
+let song=document.getElementById("song").value;
+let note=document.getElementById("note").value;
+
+localStorage.setItem("name",name);
+localStorage.setItem("song",song);
+localStorage.setItem("note",note);
+
+document.getElementById("msg").innerText="Saved successfully ❤️";
 }
 
 // MUSIC
