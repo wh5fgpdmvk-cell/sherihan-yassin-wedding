@@ -11,12 +11,11 @@
 body {
   margin:0;
   font-family:'Poppins',sans-serif;
-  color:white;
   text-align:center;
   overflow-x:hidden;
 }
 
-/* HERO (صورتكم) */
+/* HERO */
 .hero {
   position:relative;
   height:100vh;
@@ -25,20 +24,17 @@ body {
   justify-content:center;
   align-items:center;
   flex-direction:column;
+  color:white;
 }
 
-/* Overlay */
 .hero::before {
   content:"";
   position:absolute;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.35);
-  top:0;
-  left:0;
+  background:rgba(0,0,0,0.4);
 }
 
-/* TEXT فوق الصورة */
 .hero h1, .hero p {
   position:relative;
   z-index:2;
@@ -50,11 +46,10 @@ body {
 }
 
 .hero p {
-  margin-top:10px;
   font-size:18px;
 }
 
-/* SECTIONS */
+/* SECTION */
 .section {
   padding:60px 20px;
   background:#f7f3ef;
@@ -123,15 +118,12 @@ input {
 
 <!-- DETAILS -->
 <div class="section">
-
   <h2>Sherihan El Gohary & Yassin Shousha</h2>
-
   <p>June 5, 2026 — 5:00 PM</p>
 
   <div id="countdown" class="countdown"></div>
 
   <button class="btn" onclick="map()">View Location</button>
-
 </div>
 
 <!-- GALLERY -->
@@ -140,8 +132,7 @@ input {
 
   <div class="gallery">
     <img src="cover.jpg">
-    <img src="cover.jpg">
-    <img src="cover.jpg">
+    <img src="WhatsApp Image 2026-04-25 at 2.22.29 PM.jpeg">
   </div>
 </div>
 
