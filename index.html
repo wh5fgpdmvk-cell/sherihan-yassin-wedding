@@ -201,15 +201,22 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
-// OPEN + MUSIC FROM 27s
-function openInvite(){
-document.getElementById("cover").style.display="none";
-document.getElementById("main").style.display="block";
-
+// تشغيل الصوت (مرة واحدة)
+function startMusic(){
 let music=document.getElementById("music");
 music.currentTime=27;
 music.play().catch(()=>{});
 }
+
+// OPEN
+function openInvite(){
+document.getElementById("cover").style.display="none";
+document.getElementById("main").style.display="block";
+startMusic();
+}
+
+// تشغيل الصوت عند أول click في الصفحة
+document.addEventListener("click", startMusic, { once:true });
 
 // COUNTDOWN
 const date=new Date("June 5, 2026 18:00:00").getTime();
@@ -251,7 +258,7 @@ localStorage.setItem("note",note);
 document.getElementById("msg").innerText="Saved successfully ❤️";
 }
 
-// MUSIC
+// MUSIC BUTTON
 function toggle(){
 let m=document.getElementById("music");
 if(m.paused){m.play()}else{m.pause()}
