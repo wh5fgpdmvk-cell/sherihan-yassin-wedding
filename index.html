@@ -96,9 +96,6 @@ border:none;
 
 <body>
 
-<!-- hidden iframe -->
-<iframe name="hidden_iframe" style="display:none;"></iframe>
-
 <!-- COVER -->
 <div id="cover">
 <h3>You have received a wedding invitation</h3>
@@ -204,23 +201,34 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
-// OPEN
+// فتح الصفحة
 function openInvite(){
 document.getElementById("cover").style.display="none";
 document.getElementById("main").style.display="block";
 startMusic();
 }
 
-// MUSIC
+// تشغيل الصوت (مظبوط)
+let musicStarted = false;
+
 function startMusic(){
-let music=document.getElementById("music");
-music.currentTime=27;
+let music = document.getElementById("music");
+
+if(!musicStarted){
+musicStarted = true;
+
+music.addEventListener("loadedmetadata", function(){
+music.currentTime = 27;
+});
+
 music.play().catch(()=>{});
 }
+}
 
-document.addEventListener("click", startMusic, { once:true });
+// أي click يشغل الصوت
+document.addEventListener("click", startMusic);
 
-// COUNTDOWN
+// countdown
 const date=new Date("June 5, 2026 18:00:00").getTime();
 
 setInterval(()=>{
@@ -237,49 +245,32 @@ days+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds";
 
 },1000);
 
-// MAP
+// map
 function map(){
 window.open("https://www.google.com/maps/search/?api=1&query=Hilton+Pyramids+Golf+Dreamland");
 }
 
-// CALENDAR
+// calendar
 function addCalendar(){
 window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T160000Z/20260605T190000Z");
 }
 
-// RSVP (FINAL WORKING)
+// RSVP (فتح فورم جاهز)
 function sendRSVP(){
+let name=document.getElementById("name").value;
+let song=document.getElementById("song").value;
+let note=document.getElementById("note").value;
 
-const name = document.getElementById("name").value;
-const song = document.getElementById("song").value;
-const note = document.getElementById("note").value;
+let url =
+"https://docs.google.com/forms/d/e/1FAIpQLSf4cIVPfW2Dv17J4_uoeaIn3h6EUuMej0YP_N6wfeSPzsXKEQ/viewform?usp=pp_url"
++ "&entry.877086558=" + encodeURIComponent(name)
++ "&entry.1498135098=" + encodeURIComponent(song)
++ "&entry.1424661284=" + encodeURIComponent(note);
 
-const form = document.createElement("form");
-form.method = "POST";
-form.action = "https://docs.google.com/forms/d/e/1FAIpQLSf4cIVPfW2Dv17J4_uoeaIn3h6EUuMej0YP_N6wfeSPzsXKEQ/formResponse";
-form.target = "hidden_iframe";
-
-function addField(nameAttr, value){
-const input = document.createElement("input");
-input.type = "hidden";
-input.name = nameAttr;
-input.value = value || "";
-form.appendChild(input);
+window.open(url,"_blank");
 }
 
-addField("entry.877086558", name);
-addField("entry.1498135098", song);
-addField("entry.1424661284", note);
-
-document.body.appendChild(form);
-form.submit();
-form.remove();
-
-document.getElementById("msg").innerHTML =
-"✨ Thank you! Your RSVP has been received ❤️";
-}
-
-// MUSIC BUTTON
+// زرار الميوزيك
 function toggle(){
 let m=document.getElementById("music");
 if(m.paused){m.play()}else{m.pause()}
