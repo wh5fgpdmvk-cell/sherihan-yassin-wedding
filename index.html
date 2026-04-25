@@ -15,11 +15,8 @@ background:linear-gradient(to bottom,#fdf8f3,#efe7df);
 color:#222;
 }
 
-/* GOLD COLOR */
-.gold{
-color:#b89b72;
-font-weight:600;
-}
+/* GOLD */
+.gold{color:#b89b72;}
 
 /* COVER */
 #cover{
@@ -45,7 +42,7 @@ margin-top:15px;
 cursor:pointer;
 }
 
-/* SECTION CARDS */
+/* SECTION */
 .section{
 padding:50px 15px;
 display:flex;
@@ -74,7 +71,6 @@ margin:20px;
 display:flex;
 overflow-x:auto;
 gap:10px;
-padding-top:10px;
 }
 
 .gallery img{
@@ -83,7 +79,7 @@ border-radius:15px;
 }
 
 /* INPUT */
-input, textarea{
+input,textarea{
 width:90%;
 padding:10px;
 margin:10px 0;
@@ -116,12 +112,24 @@ border:none;
 
 <div id="main" style="display:none">
 
-<!-- DATE -->
+<!-- INVITATION TEXT -->
 <div class="section">
 <div class="card">
+
+<p style="font-family:'Playfair Display'; font-size:18px; color:#555;">
+We invite you to celebrate with their families and friends
+</p>
+
+<h2 style="font-family:'Playfair Display'; font-size:26px;">
+Sherihan El Gohary <br> & <br> Yassin Shousha
+</h2>
+
 <h2 class="gold">5 June 2026</h2>
+
 <div id="countdown" class="countdown"></div>
+
 <p>Counting the days for our forever ❤️</p>
+
 </div>
 </div>
 
@@ -131,12 +139,12 @@ border:none;
 <h2 class="gold">Our Story</h2>
 
 <p><b>First Meeting — Summer 2022</b><br>
-A simple meeting turned into something unforgettable. From the very first conversation, we felt a connection that grew stronger with every moment we shared.</p>
+A simple meeting turned into something unforgettable. From the very first moment, there was a spark that neither of us could ignore. It was the beginning of something truly special.</p>
 
 <br>
 
 <p><b>The Engagement — Winter 2023</b><br>
-Surrounded by love, we promised forever. A magical moment that marked the beginning of our new chapter together.</p>
+Under the magic of winter, surrounded by love and joy, we promised each other forever. A moment filled with happiness that marked the start of our journey together.</p>
 </div>
 </div>
 
@@ -168,10 +176,8 @@ Surrounded by love, we promised forever. A magical moment that marked the beginn
 <img src="img1.jpg">
 <img src="img2.jpg">
 <img src="img3.jpg">
- <img src="img4.jpg"> 
 </div>
 
-<p>Swipe to see more →</p>
 </div>
 </div>
 
@@ -192,7 +198,7 @@ Surrounded by love, we promised forever. A magical moment that marked the beginn
 
 </div>
 
-<!-- MUSIC -->
+<!-- AUDIO -->
 <audio id="music" loop>
 <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
 </audio>
@@ -231,7 +237,7 @@ function addCalendar(){
 window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T150000Z/20260605T180000Z");
 }
 
-// SAVE RSVP
+// RSVP SAVE
 function save(){
 let name=document.getElementById("name").value;
 let song=document.getElementById("song").value;
