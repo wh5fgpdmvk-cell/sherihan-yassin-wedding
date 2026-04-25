@@ -15,10 +15,8 @@ background:linear-gradient(to bottom,#fdf8f3,#efe7df);
 color:#222;
 }
 
-/* GOLD */
 .gold{color:#b89b72;}
 
-/* COVER */
 #cover{
 height:100vh;
 background:
@@ -42,7 +40,6 @@ margin-top:15px;
 cursor:pointer;
 }
 
-/* SECTION */
 .section{
 padding:50px 15px;
 display:flex;
@@ -59,14 +56,12 @@ box-shadow:0 10px 40px rgba(0,0,0,0.08);
 text-align:center;
 }
 
-/* COUNTDOWN */
 .countdown{
 font-size:22px;
 color:#b89b72;
 margin:20px;
 }
 
-/* GALLERY */
 .gallery{
 display:flex;
 overflow-x:auto;
@@ -78,7 +73,6 @@ width:240px;
 border-radius:15px;
 }
 
-/* INPUT */
 input,textarea{
 width:90%;
 padding:10px;
@@ -87,7 +81,6 @@ border-radius:10px;
 border:1px solid #ddd;
 }
 
-/* MUSIC */
 .music{
 position:fixed;
 bottom:20px;
@@ -103,7 +96,6 @@ border:none;
 
 <body>
 
-<!-- COVER -->
 <div id="cover">
 <h3>You have received a wedding invitation</h3>
 <h1>Sherihan & Yassin</h1>
@@ -112,7 +104,6 @@ border:none;
 
 <div id="main" style="display:none">
 
-<!-- INVITATION TEXT -->
 <div class="section">
 <div class="card">
 
@@ -133,22 +124,20 @@ Sherihan El Gohary <br> & <br> Yassin Shousha
 </div>
 </div>
 
-<!-- STORY -->
 <div class="section">
 <div class="card">
 <h2 class="gold">Our Story</h2>
 
 <p><b>First Meeting — Summer 2022</b><br>
-A simple meeting turned into something unforgettable. From the very first moment, there was a spark that neither of us could ignore. It was the beginning of something truly special.</p>
+A simple meeting turned into something unforgettable. From the very first moment, there was a spark that neither of us could ignore.</p>
 
 <br>
 
 <p><b>The Engagement — Winter 2023</b><br>
-Under the magic of winter, surrounded by love and joy, we promised each other forever. A moment filled with happiness that marked the start of our journey together.</p>
+Under the magic of winter, surrounded by love and joy, we promised each other forever.</p>
 </div>
 </div>
 
-<!-- LOCATION -->
 <div class="section">
 <div class="card">
 <h2 class="gold">When & Where</h2>
@@ -167,7 +156,6 @@ Under the magic of winter, surrounded by love and joy, we promised each other fo
 </div>
 </div>
 
-<!-- MOMENTS -->
 <div class="section">
 <div class="card">
 <h2 class="gold">Moments</h2>
@@ -181,7 +169,6 @@ Under the magic of winter, surrounded by love and joy, we promised each other fo
 </div>
 </div>
 
-<!-- RSVP -->
 <div class="section">
 <div class="card">
 <h2 class="gold">RSVP</h2>
@@ -198,7 +185,6 @@ Under the magic of winter, surrounded by love and joy, we promised each other fo
 
 </div>
 
-<!-- AUDIO -->
 <audio id="music" loop>
 <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
 </audio>
@@ -213,8 +199,9 @@ document.getElementById("main").style.display="block";
 document.getElementById("music").play().catch(()=>{});
 }
 
-// COUNTDOWN
+// COUNTDOWN WITH SECONDS
 const date=new Date("June 5, 2026 17:00:00").getTime();
+
 setInterval(()=>{
 let now=new Date().getTime();
 let d=date-now;
@@ -222,9 +209,11 @@ let d=date-now;
 let days=Math.floor(d/(1000*60*60*24));
 let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
 let m=Math.floor((d%(1000*60*60))/(1000*60));
+let s=Math.floor((d%(1000*60))/1000);
 
 document.getElementById("countdown").innerHTML=
-days+" Days "+h+" Hours "+m+" Minutes";
+days+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds";
+
 },1000);
 
 // MAP
@@ -237,7 +226,7 @@ function addCalendar(){
 window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T150000Z/20260605T180000Z");
 }
 
-// RSVP SAVE
+// RSVP
 function save(){
 let name=document.getElementById("name").value;
 let song=document.getElementById("song").value;
