@@ -185,7 +185,7 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 <input id="song" placeholder="Song request (optional)">
 <textarea id="note" placeholder="Leave a lovely note or wish ❤️"></textarea>
 
-<button onclick="save()">Confirm RSVP</button>
+<button onclick="sendRSVP()">Confirm RSVP</button>
 
 <p id="msg"></p>
 </div>
@@ -201,21 +201,20 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
-// تشغيل الصوت (مرة واحدة)
-function startMusic(){
-let music=document.getElementById("music");
-music.currentTime=27;
-music.play().catch(()=>{});
-}
-
-// OPEN
+// OPEN + MUSIC FROM 27s
 function openInvite(){
 document.getElementById("cover").style.display="none";
 document.getElementById("main").style.display="block";
 startMusic();
 }
 
-// تشغيل الصوت عند أول click في الصفحة
+function startMusic(){
+let music=document.getElementById("music");
+music.currentTime=27;
+music.play().catch(()=>{});
+}
+
+// أول click يشغل الصوت
 document.addEventListener("click", startMusic, { once:true });
 
 // COUNTDOWN
@@ -245,17 +244,31 @@ function addCalendar(){
 window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T160000Z/20260605T190000Z");
 }
 
-// RSVP
-function save(){
+// RSVP (Google Forms)
+function sendRSVP(){
+
 let name=document.getElementById("name").value;
 let song=document.getElementById("song").value;
 let note=document.getElementById("note").value;
 
-localStorage.setItem("name",name);
-localStorage.setItem("song",song);
-localStorage.setItem("note",note);
+const url="https://docs.google.com/forms/d/e/1FAIpQLSf4cIVPfW2Dv17J4_uoeaIn3h6EUuMej0YP_N6wfeSPzsXKEQ/formResponse";
 
-document.getElementById("msg").innerText="Saved successfully ❤️";
+const data=
+"entry.877086558="+encodeURIComponent(name)+
+"&entry.1498135098="+encodeURIComponent(song)+
+"&entry.1424661284="+encodeURIComponent(note);
+
+fetch(url,{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/x-www-form-urlencoded"
+},
+body:data
+});
+
+document.getElementById("msg").innerHTML=
+"✨ Thank you! Your RSVP has been received ❤️";
 }
 
 // MUSIC BUTTON
