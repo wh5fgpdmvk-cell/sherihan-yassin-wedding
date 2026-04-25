@@ -201,34 +201,33 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
-// فتح الصفحة
+// OPEN
 function openInvite(){
 document.getElementById("cover").style.display="none";
 document.getElementById("main").style.display="block";
 startMusic();
 }
 
-// تشغيل الصوت (مظبوط)
-let musicStarted = false;
+// MUSIC FIX
+let musicStarted=false;
 
 function startMusic(){
-let music = document.getElementById("music");
+let music=document.getElementById("music");
 
 if(!musicStarted){
-musicStarted = true;
+musicStarted=true;
 
-music.addEventListener("loadedmetadata", function(){
-music.currentTime = 27;
+music.addEventListener("loadedmetadata",function(){
+music.currentTime=27;
 });
 
 music.play().catch(()=>{});
 }
 }
 
-// أي click يشغل الصوت
-document.addEventListener("click", startMusic);
+document.addEventListener("click",startMusic);
 
-// countdown
+// COUNTDOWN
 const date=new Date("June 5, 2026 18:00:00").getTime();
 
 setInterval(()=>{
@@ -245,32 +244,34 @@ days+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds";
 
 },1000);
 
-// map
+// MAP
 function map(){
 window.open("https://www.google.com/maps/search/?api=1&query=Hilton+Pyramids+Golf+Dreamland");
 }
 
-// calendar
+// CALENDAR
 function addCalendar(){
 window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T160000Z/20260605T190000Z");
 }
 
-// RSVP (فتح فورم جاهز)
+// RSVP FIX (opens in same page)
 function sendRSVP(){
+
 let name=document.getElementById("name").value;
 let song=document.getElementById("song").value;
 let note=document.getElementById("note").value;
 
-let url =
+let url=
 "https://docs.google.com/forms/d/e/1FAIpQLSf4cIVPfW2Dv17J4_uoeaIn3h6EUuMej0YP_N6wfeSPzsXKEQ/viewform?usp=pp_url"
-+ "&entry.877086558=" + encodeURIComponent(name)
-+ "&entry.1498135098=" + encodeURIComponent(song)
-+ "&entry.1424661284=" + encodeURIComponent(note);
++"&entry.877086558="+encodeURIComponent(name)
++"&entry.1498135098="+encodeURIComponent(song)
++"&entry.1424661284="+encodeURIComponent(note);
 
-window.open(url,"_blank");
+// يفتح مضمون بدون block
+window.location.href=url;
 }
 
-// زرار الميوزيك
+// MUSIC BUTTON
 function toggle(){
 let m=document.getElementById("music");
 if(m.paused){m.play()}else{m.pause()}
