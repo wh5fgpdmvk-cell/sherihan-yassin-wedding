@@ -8,181 +8,209 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  text-align:center;
-  overflow-x:hidden;
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+overflow-x:hidden;
 }
 
-/* HERO */
-.hero {
-  position:relative;
-  height:100vh;
-  background:url("cover.jpg") center/cover no-repeat;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  color:white;
+/* COVER */
+#cover{
+height:100vh;
+background:url("cover.jpg") center/cover;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
 }
 
-.hero::before {
-  content:"";
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.4);
+#cover::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+top:0;
+left:0;
 }
 
-.hero h1, .hero p {
-  position:relative;
-  z-index:2;
+#cover h1,#cover p,#cover button{
+position:relative;
+z-index:2;
 }
 
-.hero h1 {
-  font-family:'Playfair Display';
-  font-size:48px;
-}
-
-.hero p {
-  font-size:18px;
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#b89b72;
+color:white;
+margin-top:15px;
 }
 
 /* SECTION */
-.section {
-  padding:60px 20px;
-  background:#f7f3ef;
-  color:#333;
+.section{
+padding:60px 20px;
+text-align:center;
+background:#f7f3ef;
 }
 
 /* COUNTDOWN */
-.countdown {
-  font-size:26px;
-  color:#b89b72;
-  margin:20px 0;
-}
-
-/* BUTTON */
-.btn {
-  background:#b89b72;
-  color:white;
-  padding:12px 25px;
-  border:none;
-  border-radius:30px;
-  margin-top:10px;
+.countdown{
+font-size:24px;
+color:#b89b72;
+margin:20px;
 }
 
 /* GALLERY */
-.gallery {
-  display:flex;
-  overflow-x:auto;
-  gap:15px;
-  padding:20px;
+.gallery{
+display:flex;
+overflow-x:auto;
+gap:10px;
+padding:20px;
 }
 
-.gallery img {
-  width:260px;
-  border-radius:15px;
+.gallery img{
+width:250px;
+border-radius:15px;
 }
 
-/* RSVP */
-input {
-  padding:10px;
-  width:70%;
-  border-radius:10px;
-  border:1px solid #ccc;
+/* MAP */
+iframe{
+width:100%;
+height:300px;
+border:none;
+margin-top:20px;
 }
 
 /* MUSIC */
-.music {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#b89b72;
-  color:white;
-  border-radius:50%;
-  padding:12px;
-  border:none;
+.music{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#b89b72;
+color:white;
+border-radius:50%;
+padding:12px;
+border:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Sherihan & Yassin</h1>
-  <p>Wedding Invitation</p>
+<!-- COVER -->
+<div id="cover">
+<h2>You have received a wedding invitation</h2>
+<h1>Sherihan El Gohary & Yassin Shousha</h1>
+<button onclick="openInvite()">Tap to Open</button>
 </div>
 
-<!-- DETAILS -->
+<!-- MAIN -->
+<div id="main" style="display:none">
+
 <div class="section">
-  <h2>Sherihan El Gohary & Yassin Shousha</h2>
-  <p>June 5, 2026 — 5:00 PM</p>
-
-  <div id="countdown" class="countdown"></div>
-
-  <button class="btn" onclick="map()">View Location</button>
+<h2>5 June 2026</h2>
+<div id="countdown" class="countdown"></div>
+<p>Counting the days for our forever ❤️</p>
 </div>
 
-<!-- GALLERY -->
+<!-- STORY -->
 <div class="section">
-  <h2>Our Moments</h2>
+<h2>Our Story</h2>
 
-  <div class="gallery">
-    <img src="cover.jpg">
-    <img src="WhatsApp Image 2026-04-25 at 2.22.29 PM.jpeg">
-  </div>
+<p><b>First Meeting — Summer 2022</b><br>
+It all began on a warm summer evening, where a simple moment turned into something unforgettable. What started as a casual meeting quickly became a connection that neither of us could ignore. From laughter to long conversations, something beautiful was quietly beginning.</p>
+
+<br>
+
+<p><b>The Engagement — Winter 2023</b><br>
+Under the magic of winter skies, surrounded by love and happiness, we decided to take the next step. It was a moment filled with emotions, promises, and a future we couldn’t wait to build together.</p>
 </div>
 
-<!-- RSVP -->
+<!-- WHEN & WHERE -->
 <div class="section">
-  <h2>RSVP</h2>
+<h2>When & Where</h2>
+<p><b>Dream Land Fairy Garden</b></p>
+<p>Hilton Pyramids Golf — 6 October</p>
+<p>5 June 2026</p>
 
-  <input id="name" placeholder="Your Name">
-  <br><br>
+<button onclick="map()">View Location</button>
 
-  <button class="btn" onclick="save()">Confirm Attendance</button>
+<!-- GOOGLE MAP -->
+<iframe src="https://maps.google.com/maps?q=Hilton%20Pyramids%20Golf%20Dreamland&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
 
-  <p id="msg"></p>
+<br><br>
+
+<button onclick="addCalendar()">Add to Calendar</button>
 </div>
 
-<!-- AUDIO -->
+<!-- MOMENTS -->
+<div class="section">
+<h2>Moments</h2>
+
+<div class="gallery">
+<img src="cover.jpg">
+<img src="WhatsApp Image 2026-04-25 at 2.22.29 PM.jpeg">
+</div>
+
+<p>Swipe right to see more →</p>
+</div>
+
+<!-- GOOD TO KNOW -->
+<div class="section">
+<h2>Good to Know</h2>
+
+<p><b>Are children welcome?</b><br>
+We love your little ones! Children are warmly welcome. Please note their attendance in your RSVP so we can arrange appropriate seating and kids menu.</p>
+
+<br>
+
+<p><b>Dress Code</b><br>
+Elegant / Formal attire is appreciated.</p>
+</div>
+
+</div>
+
+<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+<source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
 </audio>
 
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
+// OPEN
+function openInvite(){
+document.getElementById("cover").style.display="none";
+document.getElementById("main").style.display="block";
+document.getElementById("music").play().catch(()=>{});
+}
+
 // COUNTDOWN
-const d=new Date("June 5, 2026 17:00:00").getTime();
+const date=new Date("June 5, 2026 17:00:00").getTime();
 setInterval(()=>{
 let now=new Date().getTime();
-let t=d-now;
+let d=date-now;
 
-let days=Math.floor(t/(1000*60*60*24));
-let h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
+let days=Math.floor(d/(1000*60*60*24));
+let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((d%(1000*60*60))/(1000*60));
 
 document.getElementById("countdown").innerHTML=
-days+" Days "+h+" Hours";
+days+" Days "+h+" Hours "+m+" Minutes";
 },1000);
 
 // MAP
 function map(){
-window.open("https://www.google.com/maps/search/?api=1&query=Dreamland+Fairy+Garden+Hilton+Pyramids+Golf");
+window.open("https://www.google.com/maps/search/?api=1&query=Hilton+Pyramids+Golf+Dreamland");
 }
 
-// SAVE
-function save(){
-let name=document.getElementById("name").value;
-if(name===""){
-document.getElementById("msg").innerText="Enter your name";
-return;
-}
-localStorage.setItem("guest",name);
-document.getElementById("msg").innerText="Saved "+name+" ❤️";
+// CALENDAR
+function addCalendar(){
+window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T150000Z/20260605T180000Z");
 }
 
 // MUSIC
