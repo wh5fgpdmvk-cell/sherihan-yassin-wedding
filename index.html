@@ -96,6 +96,7 @@ border:none;
 
 <body>
 
+<!-- COVER -->
 <div id="cover">
 <h3>You have received a wedding invitation</h3>
 <h1>Sherihan & Yassin</h1>
@@ -104,6 +105,7 @@ border:none;
 
 <div id="main" style="display:none">
 
+<!-- INVITATION -->
 <div class="section">
 <div class="card">
 
@@ -125,6 +127,42 @@ Sherihan El Gohary <br> & <br> Yassin Shousha
 </div>
 </div>
 
+<!-- STORY -->
+<div class="section">
+<div class="card">
+<h2 class="gold">Our Story</h2>
+
+<p><b>First Meeting — Summer 2022</b><br>
+A simple meeting turned into something unforgettable. From the first moment, there was something special between us.</p>
+
+<br>
+
+<p><b>The Engagement — Winter 2023</b><br>
+Under the beauty of winter, surrounded by love, we promised forever and began our journey together.</p>
+
+</div>
+</div>
+
+<!-- LOCATION -->
+<div class="section">
+<div class="card">
+<h2 class="gold">When & Where</h2>
+
+<p>Dream Land Fairy Garden</p>
+<p>Hilton Pyramids Golf — 6 October</p>
+<p>5 June 2026</p>
+
+<button onclick="map()">View Location</button>
+
+<iframe src="https://maps.google.com/maps?q=Hilton%20Pyramids%20Golf%20Dreamland&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+
+<br>
+<button onclick="addCalendar()">Add to Calendar</button>
+
+</div>
+</div>
+
+<!-- MOMENTS -->
 <div class="section">
 <div class="card">
 <h2 class="gold">Moments</h2>
@@ -138,9 +176,24 @@ Sherihan El Gohary <br> & <br> Yassin Shousha
 </div>
 </div>
 
+<!-- RSVP -->
+<div class="section">
+<div class="card">
+<h2 class="gold">RSVP</h2>
+
+<input id="name" placeholder="Name of guest (optional)">
+<input id="song" placeholder="Song request (optional)">
+<textarea id="note" placeholder="Leave a lovely note or wish ❤️"></textarea>
+
+<button onclick="save()">Confirm RSVP</button>
+
+<p id="msg"></p>
+</div>
 </div>
 
-<!-- 🎵 AUDIO -->
+</div>
+
+<!-- AUDIO -->
 <audio id="music" loop>
 <source src="song.mp3" type="audio/mp3">
 </audio>
@@ -148,17 +201,17 @@ Sherihan El Gohary <br> & <br> Yassin Shousha
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
-// OPEN + START MUSIC FROM 27s
+// OPEN + MUSIC FROM 27s
 function openInvite(){
 document.getElementById("cover").style.display="none";
 document.getElementById("main").style.display="block";
 
-let music = document.getElementById("music");
-music.currentTime = 27; // 🔥 يبدأ من ثانية 27
+let music=document.getElementById("music");
+music.currentTime=27;
 music.play().catch(()=>{});
 }
 
-// COUNTDOWN WITH SECONDS
+// COUNTDOWN
 const date=new Date("June 5, 2026 18:00:00").getTime();
 
 setInterval(()=>{
@@ -175,7 +228,30 @@ days+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds";
 
 },1000);
 
-// MUSIC TOGGLE
+// MAP
+function map(){
+window.open("https://www.google.com/maps/search/?api=1&query=Hilton+Pyramids+Golf+Dreamland");
+}
+
+// CALENDAR
+function addCalendar(){
+window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T160000Z/20260605T190000Z");
+}
+
+// RSVP
+function save(){
+let name=document.getElementById("name").value;
+let song=document.getElementById("song").value;
+let note=document.getElementById("note").value;
+
+localStorage.setItem("name",name);
+localStorage.setItem("song",song);
+localStorage.setItem("note",note);
+
+document.getElementById("msg").innerText="Saved successfully ❤️";
+}
+
+// MUSIC
 function toggle(){
 let m=document.getElementById("music");
 if(m.paused){m.play()}else{m.pause()}
