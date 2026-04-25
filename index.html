@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f7f3ef;
+  text-align: center;
+  color: #2c2c2c;
+}
+
+/* COVER */
+#cover {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#fdf8f3,#efe7df);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+}
+
+#cover h1 {
+  font-family: 'Playfair Display';
+  font-size: 38px;
+}
+
+#cover p {
+  margin-top: 10px;
+  color: #777;
+}
+
+#cover button {
+  margin-top: 25px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  background: #c2a27c;
+  color: white;
+  font-size: 16px;
+}
+
+/* MAIN */
+.container {
+  padding: 70px 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+.names {
+  font-family: 'Playfair Display';
+  font-size: 40px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  color: #888;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  max-width: 420px;
+  margin: auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+.details {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* COUNTDOWN */
+.countdown {
+  margin: 20px 0;
+  font-size: 22px;
+  color: #c2a27c;
+}
+
+/* BUTTON */
+.btn {
+  background: #c2a27c;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: none;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+/* RSVP */
+.rsvp {
+  margin-top: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 80%;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 20px;
+  color: #aaa;
+}
+
+/* MUSIC BUTTON */
+.music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #c2a27c;
+  color: white;
+  border-radius: 50%;
+  padding: 12px;
+  border: none;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- COVER -->
+<div id="cover">
+  <h1>Sherihan & Yassin</h1>
+  <p>Wedding Invitation</p>
+  <button onclick="start()">Open Invitation</button>
+</div>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+</audio>
+
+<!-- MAIN -->
+<div class="container">
+
+  <div class="card">
+
+    <div class="names">
+      Sherihan El Gohary <br>&<br> Yassin Shousha
+    </div>
+
+    <div class="subtitle">
+      Together with their families invite you
+    </div>
+
+    <div class="details">📅 5 June 2026</div>
+    <div class="details">⏰ 5:00 PM</div>
+
+    <div id="countdown" class="countdown"></div>
+
+    <button class="btn" onclick="map()">📍 View Location</button>
+
+    <!-- RSVP -->
+    <div class="rsvp">
+      <h3>RSVP</h3>
+      <input id="guestName" type="text" placeholder="Your Name">
+      <br>
+      <button class="btn" onclick="saveGuest()">Confirm Attendance</button>
+      <p id="message" style="margin-top:10px; color:#c2a27c;"></p>
+    </div>
+
+    <div class="footer">
+      We can’t wait to celebrate with you ❤️
+    </div>
+
+  </div>
+
+</div>
+
+<button class="music" onclick="toggle()">🎵</button>
+
+<script>
+// OPEN
+function start(){
+  document.getElementById("cover").style.display="none";
+  const m=document.getElementById("music");
+  if(m){m.play().catch(()=>{});}
+}
+
+// COUNTDOWN
+const date=new Date("June 5, 2026 17:00:00").getTime();
+
+setInterval(()=>{
+  const now=new Date().getTime();
+  const d=date-now;
+
+  const days=Math.floor(d/(1000*60*60*24));
+  const h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((d%(1000*60*60))/(1000*60));
+
+  document.getElementById("countdown").innerHTML=
+  days+" Days "+h+" Hours "+m+" Minutes";
+},1000);
+
+// MAP
+function map(){
+  window.open("https://www.google.com/maps/search/?api=1&query=Dreamland+Fairy+Garden+Hilton+Pyramids+Golf");
+}
+
+// MUSIC
+function toggle(){
+  const m=document.getElementById("music");
+  if(m.paused){m.play();}else{m.pause();}
+}
+
+// RSVP SAVE
+function saveGuest(){
+  const name = document.getElementById("guestName").value;
+
+  if(name.trim()===""){
+    document.getElementById("message").innerText="Please enter your name";
+    return;
+  }
+
+  localStorage.setItem("guestName", name);
+
+  document.getElementById("message").innerText =
+  "Saved! See you there " + name + " ❤️";
+}
+
+// LOAD SAVED
+window.onload=function(){
+  const saved=localStorage.getItem("guestName");
+  if(saved){
+    document.getElementById("message").innerText =
+    "Welcome back " + saved + " ❤️";
+  }
+}
+</script>
+
+</body>
+</html>
