@@ -201,7 +201,7 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
-// OPEN + MUSIC FROM 27s
+// OPEN + MUSIC
 function openInvite(){
 document.getElementById("cover").style.display="none";
 document.getElementById("main").style.display="block";
@@ -214,7 +214,6 @@ music.currentTime=27;
 music.play().catch(()=>{});
 }
 
-// أول click يشغل الصوت
 document.addEventListener("click", startMusic, { once:true });
 
 // COUNTDOWN
@@ -244,34 +243,32 @@ function addCalendar(){
 window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T160000Z/20260605T190000Z");
 }
 
-// RSVP (Google Forms)
+// RSVP (WORKING 100%)
 function sendRSVP(){
 
-let name=document.getElementById("name").value;
-let song=document.getElementById("song").value;
-let note=document.getElementById("note").value;
+let name = document.getElementById("name").value;
+let song = document.getElementById("song").value;
+let note = document.getElementById("note").value;
 
-const url="https://docs.google.com/forms/d/e/1FAIpQLSf4cIVPfW2Dv17J4_uoeaIn3h6EUuMej0YP_N6wfeSPzsXKEQ/formResponse";
+const url = "https://docs.google.com/forms/d/e/1FAIpQLSf4cIVPfW2Dv17J4_uoeaIn3h6EUuMej0YP_N6wfeSPzsXKEQ/formResponse";
 
-const data=
-"entry.877086558="+encodeURIComponent(name)+
-"&entry.1498135098="+encodeURIComponent(song)+
-"&entry.1424661284="+encodeURIComponent(note);
+const params =
+"entry.877086558=" + encodeURIComponent(name) +
+"&entry.1498135098=" + encodeURIComponent(song) +
+"&entry.1424661284=" + encodeURIComponent(note);
 
-fetch(url,{
-method:"POST",
-mode:"no-cors",
-headers:{
-"Content-Type":"application/x-www-form-urlencoded"
-},
-body:data
-});
+// iframe trick
+let iframe = document.createElement("iframe");
+iframe.style.display = "none";
+iframe.src = url + "?" + params;
 
-document.getElementById("msg").innerHTML=
+document.body.appendChild(iframe);
+
+document.getElementById("msg").innerHTML =
 "✨ Thank you! Your RSVP has been received ❤️";
 }
 
-// MUSIC BUTTON
+// MUSIC
 function toggle(){
 let m=document.getElementById("music");
 if(m.paused){m.play()}else{m.pause()}
