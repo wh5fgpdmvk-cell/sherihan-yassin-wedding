@@ -105,7 +105,6 @@ border:none;
 
 <div id="main" style="display:none">
 
-<!-- INVITATION -->
 <div class="section">
 <div class="card">
 
@@ -127,80 +126,32 @@ Sherihan El Gohary <br> & <br> Yassin Shousha
 </div>
 </div>
 
-<!-- STORY -->
-<div class="section">
-<div class="card">
-<h2 class="gold">Our Story</h2>
-
-<p><b>First Meeting — Summer 2022</b><br>
-A simple meeting turned into something unforgettable. From the first moment, there was something special between us.</p>
-
-<br>
-
-<p><b>The Engagement — Winter 2023</b><br>
-Under the beauty of winter, surrounded by love, we promised forever and began our journey together.</p>
-
-</div>
-</div>
-
-<!-- LOCATION -->
-<div class="section">
-<div class="card">
-<h2 class="gold">When & Where</h2>
-
-<p>Dream Land Fairy Garden</p>
-<p>Hilton Pyramids Golf — 6 October</p>
-<p>5 June 2026</p>
-
-<button onclick="map()">View Location</button>
-
-<iframe src="https://maps.google.com/maps?q=Hilton%20Pyramids%20Golf%20Dreamland&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-
-<br>
-<button onclick="addCalendar()">Add to Calendar</button>
-
-</div>
-</div>
-
-<!-- MOMENTS -->
-<div class="section">
-<div class="card">
-<h2 class="gold">Moments</h2>
-
-<div class="gallery">
-<img src="img1.jpg">
-<img src="img2.jpg">
-<img src="img3.jpg">
-</div>
-
-</div>
-</div>
-
 <!-- RSVP -->
 <div class="section">
 <div class="card">
 <h2 class="gold">RSVP</h2>
 
-<input id="name" placeholder="Name of guest (optional)">
-<input id="song" placeholder="Song request (optional)">
-<textarea id="note" placeholder="Leave a lovely note or wish ❤️"></textarea>
+<input id="name" placeholder="Name">
+<input id="song" placeholder="Song request">
+<textarea id="note" placeholder="Leave a note ❤️"></textarea>
 
 <button onclick="sendRSVP()">Confirm RSVP</button>
-
 <p id="msg"></p>
+
 </div>
 </div>
 
 </div>
 
 <!-- AUDIO -->
-<audio id="music" loop>
+<audio id="music" loop preload="auto">
 <source src="song.mp3" type="audio/mp3">
 </audio>
 
 <button class="music" onclick="toggle()">🎵</button>
 
 <script>
+
 // OPEN
 function openInvite(){
 document.getElementById("cover").style.display="none";
@@ -208,24 +159,29 @@ document.getElementById("main").style.display="block";
 startMusic();
 }
 
-// MUSIC FIX
-let musicStarted=false;
+// 🔥 MUSIC FIX (starts from 27s)
+let musicStarted = false;
 
 function startMusic(){
-let music=document.getElementById("music");
+const music = document.getElementById("music");
 
 if(!musicStarted){
-musicStarted=true;
+musicStarted = true;
 
-music.addEventListener("loadedmetadata",function(){
-music.currentTime=27;
-});
-
+function playFrom27(){
+music.currentTime = 27;
 music.play().catch(()=>{});
 }
+
+if(music.readyState >= 2){
+playFrom27();
+}else{
+music.addEventListener("canplay", playFrom27, { once: true });
+}
+}
 }
 
-document.addEventListener("click",startMusic);
+document.addEventListener("click", startMusic);
 
 // COUNTDOWN
 const date=new Date("June 5, 2026 18:00:00").getTime();
@@ -244,31 +200,20 @@ days+" Days "+h+" Hours "+m+" Minutes "+s+" Seconds";
 
 },1000);
 
-// MAP
-function map(){
-window.open("https://www.google.com/maps/search/?api=1&query=Hilton+Pyramids+Golf+Dreamland");
-}
-
-// CALENDAR
-function addCalendar(){
-window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding&dates=20260605T160000Z/20260605T190000Z");
-}
-
-// RSVP FIX (opens in same page)
+// RSVP (opens form)
 function sendRSVP(){
 
 let name=document.getElementById("name").value;
 let song=document.getElementById("song").value;
 let note=document.getElementById("note").value;
 
-let url=
+let url =
 "https://docs.google.com/forms/d/e/1FAIpQLSf4cIVPfW2Dv17J4_uoeaIn3h6EUuMej0YP_N6wfeSPzsXKEQ/viewform?usp=pp_url"
-+"&entry.877086558="+encodeURIComponent(name)
-+"&entry.1498135098="+encodeURIComponent(song)
-+"&entry.1424661284="+encodeURIComponent(note);
++ "&entry.877086558=" + encodeURIComponent(name)
++ "&entry.1498135098=" + encodeURIComponent(song)
++ "&entry.1424661284=" + encodeURIComponent(note);
 
-// يفتح مضمون بدون block
-window.location.href=url;
+window.location.href = url;
 }
 
 // MUSIC BUTTON
@@ -276,6 +221,7 @@ function toggle(){
 let m=document.getElementById("music");
 if(m.paused){m.play()}else{m.pause()}
 }
+
 </script>
 
 </body>
