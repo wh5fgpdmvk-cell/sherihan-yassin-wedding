@@ -133,12 +133,10 @@ Sherihan El Gohary <br> & <br> Yassin Shousha
 <h2 class="gold">Our Story</h2>
 
 <p><b>First Meeting — Summer 2022</b><br>
-A simple meeting turned into something unforgettable. From the first moment, there was something special between us.</p>
+A simple meeting turned into something unforgettable.</p>
 
-<br>
-
-<p><b>The Engagement — Winter 2023</b><br>
-Under the beauty of winter, surrounded by love, we promised forever and began our journey together.</p>
+<p><b>Engagement — Winter 2023</b><br>
+We promised forever surrounded by love.</p>
 
 </div>
 </div>
@@ -153,7 +151,7 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 
 <button onclick="map()">View Location</button>
 
-<iframe src="https://maps.google.com/maps?q=Hilton%20Pyramids%20Golf%20Dreamland&output=embed"></iframe>
+<iframe src="https://maps.google.com/maps?q=Hilton%20Pyramids%20Golf%20Dreamland&output=embed" width="100%" height="250"></iframe>
 
 <br>
 <button onclick="addCalendar()">Add to Calendar</button>
@@ -186,7 +184,7 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 
 <input id="name" placeholder="Name">
 <input id="song" placeholder="Song request">
-<textarea id="note" placeholder="Leave a lovely note ❤️"></textarea>
+<textarea id="note" placeholder="Leave a note ❤️"></textarea>
 
 <button onclick="sendRSVP()">Confirm RSVP</button>
 
@@ -196,7 +194,7 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 </div>
 
 <!-- AUDIO -->
-<audio id="music" loop preload="auto">
+<audio id="music" loop preload="auto" playsinline>
 <source src="song.mp3" type="audio/mp3">
 </audio>
 
@@ -204,54 +202,24 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 
 <script>
 
-// OPEN
-<script>
+// OPEN + MUSIC FIX
 function openInvite(){
 
-  document.getElementById("cover").style.display="none";
-  document.getElementById("main").style.display="block";
+document.getElementById("cover").style.display="none";
+document.getElementById("main").style.display="block";
 
-  const music = document.getElementById("music");
+const music = document.getElementById("music");
 
-  music.muted = true;
+// trick to force autoplay
+music.muted = true;
 
-  music.play().then(()=>{
-    music.pause();
-
-    music.currentTime = 27;
-
-    music.muted = false;
-
-    music.play();
-  }).catch(()=>{
-    console.log("autoplay blocked");
-  });
-}
-</script>
-
-// 🔥 FIX MUSIC (start from 27s)
-let musicStarted=false;
-
-function startMusic(){
-const music=document.getElementById("music");
-
-if(!musicStarted){
-musicStarted=true;
-
-function playFrom27(){
-music.currentTime=27;
+music.play().then(()=>{
+music.pause();
+music.currentTime = 27;
+music.muted = false;
 music.play();
+}).catch(()=>{});
 }
-
-if(music.readyState>=2){
-playFrom27();
-}else{
-music.addEventListener("canplay",playFrom27,{once:true});
-}
-}
-}
-
-document.addEventListener("click",startMusic);
 
 // COUNTDOWN
 const date=new Date("June 5, 2026 18:00:00").getTime();
