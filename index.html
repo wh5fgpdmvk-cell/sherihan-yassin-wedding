@@ -205,11 +205,29 @@ Under the beauty of winter, surrounded by love, we promised forever and began ou
 <script>
 
 // OPEN
+<script>
 function openInvite(){
-document.getElementById("cover").style.display="none";
-document.getElementById("main").style.display="block";
-startMusic();
+
+  document.getElementById("cover").style.display="none";
+  document.getElementById("main").style.display="block";
+
+  const music = document.getElementById("music");
+
+  music.muted = true;
+
+  music.play().then(()=>{
+    music.pause();
+
+    music.currentTime = 27;
+
+    music.muted = false;
+
+    music.play();
+  }).catch(()=>{
+    console.log("autoplay blocked");
+  });
 }
+</script>
 
 // 🔥 FIX MUSIC (start from 27s)
 let musicStarted=false;
